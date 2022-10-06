@@ -25,8 +25,11 @@ export default {
   methods: {
     async getCatList() {
       const cats = new Cats()
-      let result = await cats.getList(catsLimit)
-      result.isSuccess ? (this.cats = result.response) : (this.error = true)
+      const result = await cats.getList(catsLimit)
+
+      result.isSuccess()
+        ? (this.cats = result.getResult())
+        : (this.error = true)
     },
     selectCat(cat) {
       this.selectedCat = cat

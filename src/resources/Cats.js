@@ -1,16 +1,14 @@
-import RestApi from '../services/RestApi'
+import RestApiResource from './base/RestApiResource'
 
-export default class Cats {
-  constructor() {
-    this.restApi = new RestApi()
-  }
-
-  getList(limit) {
-    return this.restApi.get('images/search', { limit })
+export default class Cats extends RestApiResource {
+  async getList(limit) {
+    let result = await this.restApi.get('images/search', { limit })
+    return this.buildResource(result)
   }
 
   //We can use this method to get single cat by ID:
-  /* getCatByID(id) {
-    return this.restApi.get('images/' + id)
+  /* async getCatByID(id) {
+    let result = await this.restApi.get('images/' + id)
+    return this.buildResource(result)
   } */
 }
