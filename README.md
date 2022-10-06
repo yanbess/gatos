@@ -1,14 +1,18 @@
-# gatos
+# Super Cat Database
+## Structure of the application:
+There are three independent layers of the application:
 
-This template should help get you started developing with Vue 3 in Vite.
+### ```/src/components: ```
+Components responsive for view of a client part in browser. 
+When some component wants to get some data it refers to resource class, that is in resources directory. And component doesn't care abort where and how this resource gets data (is it api, database or file). The components only knows that resource always have methods isSuccess() and getResult().
 
-## Recommended IDE Setup
+### ```/src/resources: ```
+Resources responsive for a way of getting and preparing data for component. 
+It can be api, database or file. Any resource should always return resource/base/ResourceBuilder, because component knows how to work only with this object.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+### ```/src/services: ```
+Service is just a class, which gets data from a specific source (api, database of file). 
+Resource use it just like a tool to get data it needs. Service doesn't know anything about other components of the application.
 
 ## Project Setup
 
@@ -26,10 +30,4 @@ npm run dev
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
